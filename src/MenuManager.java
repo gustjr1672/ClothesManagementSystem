@@ -42,7 +42,7 @@ public class MenuManager {
 		System.out.print("clothes length");
 		int clotheslength = input.nextInt();
 		System.out.print("clothes price");
-		int clothesbrand = input.nextInt();
+		int clothesprice = input.nextInt();
 	}
 	public static void deletClothes() {
 		Scanner input = new Scanner(System.in);
