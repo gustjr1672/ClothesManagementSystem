@@ -32,7 +32,6 @@ public class MenuManager {
 				continue;
 			}
 		}
-
 	}
 	public static void addClothes()  {
 		Scanner input = new Scanner(System.in);
@@ -44,7 +43,6 @@ public class MenuManager {
 		int clotheslength = input.nextInt();
 		System.out.print("clothes price");
 		int clothesbrand = input.nextInt();
-		
 	}
 	public static void deletClothes() {
 		Scanner input = new Scanner(System.in);
@@ -60,5 +58,5 @@ public static void veiwClothes() {
 	Scanner input = new Scanner(System.in);
 	System.out.print("clothes type");
 	String clothestype = input.next();
-}
+	}
 }
