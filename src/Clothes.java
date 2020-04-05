@@ -22,7 +22,7 @@ public class Clothes {
 			
 		}
 		public void printInfo() {
-			System.out.println("type:" + type +"/" + "color:" + color +"/" + "totallength:" + totallength +"/" + "price:" + price);
+			System.out.println("type:" + type +   " color:" + color + " totallength:" + totallength + " price:" + price);
 		}
 }
 
