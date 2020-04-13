@@ -27,7 +27,7 @@ public class MenuManager {
 				ClothesManger.editClothes();
 			}
 			else if(num==4) {
-				ClothesManger.veiwClothes();
+				ClothesManger.veiwCloset();
 			}
 			else {
 				continue;
