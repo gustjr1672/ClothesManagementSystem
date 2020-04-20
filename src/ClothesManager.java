@@ -15,8 +15,8 @@ public class ClothesManager {
 		int kind =0;
 		Clothes clothes;
 		while(kind != 1 && kind != 2) {
-			System.out.print("1 for Spring Clothes");
-			System.out.print("2 for Summer Clothes");
+			System.out.print("1 for Spring Clothes ");
+			System.out.print("2 for Summer Clothes, ");
 			System.out.print("Select num for Clothes Kind between 1 and 2:");
 			kind = input.nextInt();
 			if (kind == 1) {

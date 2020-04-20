@@ -35,6 +35,6 @@ public class SummerClothes extends Clothes {
 
 		System.out.print("clothes price:");
 		String price = input.next();
-		this.setPrice(totallength);
+		this.setPrice(price);
 	}
 }
