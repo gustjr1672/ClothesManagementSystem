@@ -5,7 +5,7 @@ public class MenuManager {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		ClothesManager ClothesManger = new ClothesManager(input);
-		
+
 		int num = 1;
 
 		while (num != 5) {
@@ -35,4 +35,3 @@ public class MenuManager {
 		}
 	}
 }
-	

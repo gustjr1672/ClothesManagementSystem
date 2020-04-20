@@ -1,32 +1,47 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Clothes.Clothes;
+import Clothes.SummerClothes;
+
 public class ClothesManager {
 	ArrayList <Clothes> closet = new ArrayList <Clothes>();
 	Scanner input;
 	ClothesManager(Scanner input){
 		this.input = input;
-
 	}
 
 	public void addClothes()  {
-		Clothes clothes = new Clothes() ;
-		System.out.print("clothes type:");
-		clothes.type = input.next();
-		System.out.print("clothes color:");
-		clothes.color = input.next();
-		System.out.print("clothes totallength:");
-		clothes.totallength = input.next();
-		System.out.print("clothes price:");
-		clothes.price = input.next();
-		closet.add(clothes);
+		int kind =0;
+		Clothes clothes;
+		while(kind != 1 && kind != 2) {
+			System.out.print("1 for Spring Clothes");
+			System.out.print("2 for Summer Clothes");
+			System.out.print("Select num for Clothes Kind between 1 and 2:");
+			kind = input.nextInt();
+			if (kind == 1) {
+				clothes = new Clothes();
+				clothes.getUserInput(input);
+				closet.add(clothes);
+				break;
+			}
+			else if (kind ==2) {
+				clothes = new SummerClothes();
+				clothes.getUserInput(input);
+				closet.add(clothes);
+				break;
+			}
+			else {
+				System.out.print("Select num for Clothes Kind:");
+			}
+		}
 	}
 	public void deletClothes() {
 		System.out.print("clothes type:");
 		String clothestype = input.next();
 		int index = -1;
 		for (int i=0; i<closet.size(); i++) {	
-			if(closet.get(i).type.equals(clothestype)) {
+			if(closet.get(i).getType().equals(clothestype)) {
 				index = i;
 				break;
 			}	
@@ -34,7 +49,7 @@ public class ClothesManager {
 		}
 		if(index >= 0) {
 			closet.remove(index);
-			System.out.println("the clothes" + clothestype +"is delted");
+			System.out.println("the clothes" + clothestype +"is deleted");
 		}
 		else {
 			System.out.println("the clothes has not been registered");
@@ -47,7 +62,7 @@ public class ClothesManager {
 		String clothestype = input.next();
 		for (int i=0; i<closet.size(); i++) {
 			Clothes clothes = closet.get(i);
-			if(clothes.type.equals(clothestype)) {	
+			if(clothes.getType().equals(clothestype)) {	
 				int num = 1;
 				while (num != 5) {
 					System.out.println("** Clothes Info Edit Menu**");
@@ -60,19 +75,23 @@ public class ClothesManager {
 					num = input.nextInt();
 					if(num==1) {
 						System.out.print("clothes type:");
-						clothes.type = input.next();
+						String type = input.next();
+						clothes.setType(type);
 					}
 					else if(num==2) {
 						System.out.print("clothes color:");
-						clothes.color = input.next();
+						String color = input.next();
+						clothes.setColor(color);
 					}
 					else if(num==3) {
 						System.out.print("clothes totallength:");
-						clothes.totallength = input.next();	
+						String totallength = input.next();
+						clothes.setTotallength(totallength);
 					}
 					else if(num==4) {
 						System.out.print("clothes price:");
-						clothes.price = input.next();
+						String price = input.next();
+						clothes.setPrice(price);
 					}
 					else {
 						continue;
@@ -87,6 +106,7 @@ public class ClothesManager {
 	public void veiwCloset() {
 		//		System.out.print("clothes type:");
 		//		String clothestype = input.next();
+		System.out.println("# of registered students:" + closet.size());
 		for (int i=0; i<closet.size(); i++) {
 			closet.get(i).printInfo();
 		}
