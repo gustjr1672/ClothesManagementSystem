@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Clothes.Clothes;
+import Clothes.ClothesKind;
+import Clothes.FallClothes;
 import Clothes.SummerClothes;
 
 public class ClothesManager {
@@ -15,18 +17,25 @@ public class ClothesManager {
 		int kind =0;
 		Clothes clothes;
 		while(kind != 1 && kind != 2) {
-			System.out.print("1 for Spring Clothes ");
-			System.out.print("2 for Summer Clothes, ");
-			System.out.print("Select num for Clothes Kind between 1 and 2:");
+			System.out.println("1 for Spring Clothes");
+			System.out.println("2 for Summer Clothes");
+			System.out.println("3 for Fall Clothes");
+			System.out.print("Select num 1, 2, or 3 for Clothes Kind");
 			kind = input.nextInt();
 			if (kind == 1) {
-				clothes = new Clothes();
+				clothes = new Clothes(ClothesKind.SpringClothes);
 				clothes.getUserInput(input);
 				closet.add(clothes);
 				break;
 			}
 			else if (kind ==2) {
-				clothes = new SummerClothes();
+				clothes = new SummerClothes(ClothesKind.SummerClothes);
+				clothes.getUserInput(input);
+				closet.add(clothes);
+				break;
+			}
+			else if (kind ==3) {
+				clothes = new FallClothes(ClothesKind.FallClothes);
 				clothes.getUserInput(input);
 				closet.add(clothes);
 				break;

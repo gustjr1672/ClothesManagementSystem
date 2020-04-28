@@ -12,7 +12,11 @@ public class Clothes {
 
 	public Clothes() {
 	}
-
+	
+	public Clothes(ClothesKind kind) {
+		this.kind = kind;
+	}
+	
 	public Clothes(	String type, String color){	
 		this.type = type;
 		this.color = color;
@@ -25,6 +29,15 @@ public class Clothes {
 		this.totallength = totallength;
 		this.price = price;
 
+	}
+	
+	public Clothes( ClothesKind kind, String type, String color, String totallength, String price)
+	{	
+		this.kind = kind;
+		this.type = type;
+		this.color = color;
+		this.totallength = totallength;
+		this.price = price;
 	}
 	
 	public ClothesKind getKind() {
@@ -66,8 +79,27 @@ public class Clothes {
 	public void setPrice(String price) {
 		this.price = price;
 	}
+	
+
 	public void printInfo() {
-		System.out.println("type:" + type +   " color:" + color + " totallength:" + totallength + " price:" + price);
+		String skind = "none";
+		switch(this.kind) {
+		case SpringClothes:
+			skind = "Spring";
+			break;
+		case SummerClothes:
+			skind = "Summer";
+			break;
+		case FallClothes:
+			skind = "Fall";
+			break;
+		case WinterClothes:
+			skind = "Winter";
+			break;
+		default:
+			
+		}
+		System.out.println("kind:" + skind +"type:" + type +   " color:" + color + " totallength:" + totallength + " price:" + price);
 	}
 	public void getUserInput(Scanner input) {
 		System.out.print("clothes type:");

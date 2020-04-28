@@ -3,6 +3,11 @@ package Clothes;
 import java.util.Scanner;
 
 public class SummerClothes extends Clothes {
+	
+	public SummerClothes(ClothesKind kind) {
+		super(kind);
+	}
+	
 	public void getUserInput(Scanner input) {
 		System.out.print("clothes type:");
 		String type = input.next();
