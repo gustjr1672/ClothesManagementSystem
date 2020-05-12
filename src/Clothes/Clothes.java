@@ -2,8 +2,7 @@ package Clothes;
 
 import java.util.Scanner;
 
-public class Clothes {
-	
+public abstract class Clothes implements ClothesInput {
 	protected ClothesKind kind = ClothesKind.SpringClothes;
 	protected String type;
 	protected String color;
@@ -28,7 +27,6 @@ public class Clothes {
 		this.color = color;
 		this.totallength = totallength;
 		this.price = price;
-
 	}
 	
 	public Clothes( ClothesKind kind, String type, String color, String totallength, String price)
@@ -80,8 +78,33 @@ public class Clothes {
 		this.price = price;
 	}
 	
-
-	public void printInfo() {
+	public abstract void printInfo();
+	
+	public void setClothesType( Scanner input) {
+		System.out.print("clothes type:");
+		String type = input.next();
+		this.setType(type);
+	}
+	
+	public void setClothesColor(Scanner input) {
+		System.out.print("clothes color:");
+		String color = input.next();
+		this.setColor(color);
+	}
+	
+	public void setClothesTotallength( Scanner input) {
+		System.out.print("clothes totallength:");
+		String totallength = input.next();
+		this.setTotallength(totallength);
+	}
+	
+	public void setClothesPrice( Scanner input) {
+		System.out.print("clothes price:");
+		String price = input.next();
+		this.setPrice(price);
+	}
+	
+	public String getKindString() {
 		String skind = "none";
 		switch(this.kind) {
 		case SpringClothes:
@@ -97,27 +120,10 @@ public class Clothes {
 			skind = "Winter";
 			break;
 		default:
-			
 		}
-		System.out.println("kind:" + skind +"type:" + type +   " color:" + color + " totallength:" + totallength + " price:" + price);
+		return skind;
 	}
-	public void getUserInput(Scanner input) {
-		System.out.print("clothes type:");
-		String type = input.next();
-		this.setType(type);
-		
-		System.out.print("clothes color:");
-		String color = input.next();
-		this.setColor(color);
-		
-		System.out.print("clothes totallength:");
-		String totallength = input.next();
-		this.setTotallength(totallength);
-		
-		System.out.print("clothes price:");
-		String price = input.next();
-		this.setPrice(price);
-	}
+	
 }
 
 

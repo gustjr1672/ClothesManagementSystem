@@ -9,29 +9,34 @@ public class MenuManager {
 		int num = 1;
 
 		while (num != 5) {
-			System.out.println("** Clothes Management System Menu**");
-			System.out.println(" 1, Add clothes");
-			System.out.println(" 2, Delect clothes");
-			System.out.println(" 3, Edit clothes");
-			System.out.println(" 4, View clothes");
-			System.out.println(" 5, Exit");
-			System.out.println("select one number between 1~5:");
+			showMenu();
 			num = input.nextInt();
-			if(num==1) {
+			switch(num) {
+			case 1:
 				ClothesManger.addClothes();
-			}
-			else if(num==2) {
+				break;
+			case 2:
 				ClothesManger.deletClothes();
-			}
-			else if(num==3) {
+				break;
+			case 3:
 				ClothesManger.editClothes();
-			}
-			else if(num==4) {
+				break;
+			case 4:
 				ClothesManger.veiwCloset();
-			}
-			else {
+				break;
+			default:
 				continue;
 			}
 		}
+	}
+	
+	public static void showMenu() {
+		System.out.println("** Clothes Management System Menu**");
+		System.out.println(" 1, Add clothes");
+		System.out.println(" 2, Delect clothes");
+		System.out.println(" 3, Edit clothes");
+		System.out.println(" 4, View clothes");
+		System.out.println(" 5, Exit");
+		System.out.println("select one number between 1~5:");
 	}
 }
