@@ -2,6 +2,8 @@ package Clothes;
 
 import java.util.Scanner;
 
+import exception.TotallengthFormatException;
+
 public abstract class Clothes implements ClothesInput {
 	protected ClothesKind kind = ClothesKind.SpringClothes;
 	protected String type;
@@ -11,11 +13,11 @@ public abstract class Clothes implements ClothesInput {
 
 	public Clothes() {
 	}
-	
+
 	public Clothes(ClothesKind kind) {
 		this.kind = kind;
 	}
-	
+
 	public Clothes(	String type, String color){	
 		this.type = type;
 		this.color = color;
@@ -28,7 +30,7 @@ public abstract class Clothes implements ClothesInput {
 		this.totallength = totallength;
 		this.price = price;
 	}
-	
+
 	public Clothes( ClothesKind kind, String type, String color, String totallength, String price)
 	{	
 		this.kind = kind;
@@ -37,7 +39,7 @@ public abstract class Clothes implements ClothesInput {
 		this.totallength = totallength;
 		this.price = price;
 	}
-	
+
 	public ClothesKind getKind() {
 		return kind;
 	}
@@ -66,7 +68,10 @@ public abstract class Clothes implements ClothesInput {
 		return totallength;
 	}
 
-	public void setTotallength(String totallength) {
+	public void setTotallength(String totallength) throws TotallengthFormatException {
+		if(!totallength.contains("cm") && !totallength.equals("")) {
+			throw new TotallengthFormatException();
+		}
 		this.totallength = totallength;
 	}
 
@@ -77,33 +82,40 @@ public abstract class Clothes implements ClothesInput {
 	public void setPrice(String price) {
 		this.price = price;
 	}
-	
+
 	public abstract void printInfo();
-	
+
 	public void setClothesType( Scanner input) {
 		System.out.print("clothes type:");
 		String type = input.next();
 		this.setType(type);
 	}
-	
+
 	public void setClothesColor(Scanner input) {
 		System.out.print("clothes color:");
 		String color = input.next();
 		this.setColor(color);
 	}
-	
+
 	public void setClothesTotallength( Scanner input) {
-		System.out.print("clothes totallength:");
-		String totallength = input.next();
-		this.setTotallength(totallength);
+		String totallength = "";
+		while(!totallength.contains("cm")) {
+			System.out.print("clothes totallength:");
+			totallength = input.next();
+			try {
+				this.setTotallength(totallength);
+			} catch (TotallengthFormatException e) {
+				System.out.println("please enter length units 'cm'.");
+			}
+		}
 	}
-	
+
 	public void setClothesPrice( Scanner input) {
 		System.out.print("clothes price:");
 		String price = input.next();
 		this.setPrice(price);
 	}
-	
+
 	public String getKindString() {
 		String skind = "none";
 		switch(this.kind) {
@@ -123,7 +135,6 @@ public abstract class Clothes implements ClothesInput {
 		}
 		return skind;
 	}
-	
 }
 
 

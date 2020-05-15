@@ -2,6 +2,8 @@ package Clothes;
 
 import java.util.Scanner;
 
+import exception.TotallengthFormatException;
+
 public interface ClothesInput {
 	
 	public String getType();
@@ -10,7 +12,7 @@ public interface ClothesInput {
 	
 	public void setColor(String color);
 	
-	public void setTotallength(String totallength);
+	public void setTotallength (String totallength) throws TotallengthFormatException;
 	
 	public void setPrice(String price);
 	

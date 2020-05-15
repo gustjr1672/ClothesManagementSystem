@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Clothes.Clothes;
@@ -18,32 +19,41 @@ public class ClothesManager {
 	public void addClothes()  {
 		int kind =0;
 		ClothesInput clothesInput;
-		while(kind != 1 && kind != 2) {
-			System.out.println("1 for Spring Clothes");
-			System.out.println("2 for Summer Clothes");
-			System.out.println("3 for Fall Clothes");
-			System.out.print("Select num 1, 2, or 3 for Clothes Kind");
-			kind = input.nextInt();
-			if (kind == 1) {
-				clothesInput = new SpringClothes(ClothesKind.SpringClothes);
-				clothesInput.getUserInput(input);
-				closet.add(clothesInput);
-				break;
+		while(kind < 1 || kind > 3 ) {
+			try {
+				System.out.println("1 for Spring Clothes");
+				System.out.println("2 for Summer Clothes");
+				System.out.println("3 for Fall Clothes");
+				System.out.print("Select num 1, 2, or 3 for Clothes Kind");
+				kind = input.nextInt();
+				if (kind == 1) {
+					clothesInput = new SpringClothes(ClothesKind.SpringClothes);
+					clothesInput.getUserInput(input);
+					closet.add(clothesInput);
+					break;
+				}
+				else if (kind ==2) {
+					clothesInput = new SummerClothes(ClothesKind.SummerClothes);
+					clothesInput.getUserInput(input);
+					closet.add(clothesInput);
+					break;
+				}
+				else if (kind ==3) {
+					clothesInput = new FallClothes(ClothesKind.FallClothes);
+					clothesInput.getUserInput(input);
+					closet.add(clothesInput);
+					break;
+				}
+				else {
+					System.out.print("Select num for Clothes Kind:");
+				}
 			}
-			else if (kind ==2) {
-				clothesInput = new SummerClothes(ClothesKind.SummerClothes);
-				clothesInput.getUserInput(input);
-				closet.add(clothesInput);
-				break;
-			}
-			else if (kind ==3) {
-				clothesInput = new FallClothes(ClothesKind.FallClothes);
-				clothesInput.getUserInput(input);
-				closet.add(clothesInput);
-				break;
-			}
-			else {
-				System.out.print("Select num for Clothes Kind:");
+			catch(InputMismatchException e) {
+				System.out.println("please put an integer between 1 and 3");
+				if(input.hasNext()) {
+					input.next();
+				}
+				kind = -1;
 			}
 		}
 	}
@@ -53,7 +63,7 @@ public class ClothesManager {
 		int index = findIndex(clothestype);
 		removefromCloset(index, clothestype);
 	}
-	
+
 	public int findIndex (String clothestype) { 
 		int index = -1;
 		for (int i=0; i<closet.size(); i++) {	
@@ -64,7 +74,7 @@ public class ClothesManager {
 		}
 		return index;
 	}
-	
+
 	public int removefromCloset(int index, String clothestype) {
 		if(index >= 0) {
 			closet.remove(index);
@@ -76,7 +86,7 @@ public class ClothesManager {
 			return -1;	
 		}	
 	}
-	
+
 	public void editClothes() {
 		System.out.print("clothes type:");
 		String clothestype = input.next();
@@ -111,12 +121,12 @@ public class ClothesManager {
 	}
 
 	public void veiwCloset() {
-		System.out.println("# of registered students:" + closet.size());
+		System.out.println("# of registered clothes:" + closet.size());
 		for (int i=0; i<closet.size(); i++) {
 			closet.get(i).printInfo();
 		}
 	} 
-	
+
 	public void showEditMenu() {
 		System.out.println("** Clothes Info Edit Menu**");
 		System.out.println(" 1, Edit type");
