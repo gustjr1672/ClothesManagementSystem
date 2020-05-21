@@ -1,10 +1,15 @@
 package Clothes;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import exception.TotallengthFormatException;
 
-public abstract class Clothes implements ClothesInput {
+public abstract class Clothes implements ClothesInput, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -358471720352873275L;
 	protected ClothesKind kind = ClothesKind.SpringClothes;
 	protected String type;
 	protected String color;

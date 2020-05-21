@@ -1,17 +1,23 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Clothes.Clothes;
 import Clothes.ClothesInput;
 import Clothes.ClothesKind;
 import Clothes.FallClothes;
 import Clothes.SpringClothes;
 import Clothes.SummerClothes;
+import Clothes.WinterClothes;
 
-public class ClothesManager {
+public class ClothesManager implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9183394761674436687L;
+	
 	ArrayList <ClothesInput> closet = new ArrayList <ClothesInput>();
-	Scanner input;
+	transient Scanner input;
 	ClothesManager(Scanner input){
 		this.input = input;
 	}
@@ -19,12 +25,13 @@ public class ClothesManager {
 	public void addClothes()  {
 		int kind =0;
 		ClothesInput clothesInput;
-		while(kind < 1 || kind > 3 ) {
+		while(kind < 1 || kind > 4 ) {
 			try {
 				System.out.println("1 for Spring Clothes");
 				System.out.println("2 for Summer Clothes");
 				System.out.println("3 for Fall Clothes");
-				System.out.print("Select num 1, 2, or 3 for Clothes Kind");
+				System.out.println("4 for Winter Clothes");
+				System.out.print("Select num 1~4 for Clothes Kind");
 				kind = input.nextInt();
 				if (kind == 1) {
 					clothesInput = new SpringClothes(ClothesKind.SpringClothes);
@@ -44,12 +51,18 @@ public class ClothesManager {
 					closet.add(clothesInput);
 					break;
 				}
+				else if (kind ==4) {
+					clothesInput = new WinterClothes(ClothesKind.WinterClothes);
+					clothesInput.getUserInput(input);
+					closet.add(clothesInput);
+					break;
+				}
 				else {
 					System.out.print("Select num for Clothes Kind:");
 				}
 			}
 			catch(InputMismatchException e) {
-				System.out.println("please put an integer between 1 and 3");
+				System.out.println("please put an integer between 1 and 4");
 				if(input.hasNext()) {
 					input.next();
 				}
@@ -126,7 +139,9 @@ public class ClothesManager {
 			closet.get(i).printInfo();
 		}
 	} 
-
+	   public void setScanner(Scanner input) {
+	        this.input = input;
+	    }
 	public void showEditMenu() {
 		System.out.println("** Clothes Info Edit Menu**");
 		System.out.println(" 1, Edit type");
