@@ -2,12 +2,13 @@ package Clothes;
 
 import java.util.Scanner;
 
+import exception.TotallengthFormatException;
+
 public class SpringClothes extends Clothes {
 	
 	public SpringClothes(ClothesKind kind) {
 		super(kind);
 	}
-	
 	public void getUserInput(Scanner input) {
 		setClothesType(input);
 		setClothesColor(input);
